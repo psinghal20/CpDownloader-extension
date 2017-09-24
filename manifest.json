@@ -5,7 +5,7 @@
   "description": "This extension will save a copy of my code from diffrent competitive coding sites and IDEs",
   "version": "1.0",
   "content_scripts": [{
-    "matches": ["https://www.hackerrank.com/*"],
+    "matches": ["https://www.hackerrank.com/*","https://www.codechef.com/*"],
     "js": ["jquery.js","background.js"]
   }],
   "background": {
@@ -17,6 +17,7 @@
    "default_popup": "popup.html"
   },
   "permissions": [
+   "tabs",
    "activeTab"
    ]
 }

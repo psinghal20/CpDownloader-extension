@@ -1,8 +1,8 @@
 window.onload = function() {
 	let btn = document.getElementById("saveme");
 	btn.onclick = function(){
-		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  			chrome.tabs.sendMessage(tabs[0].id, {flag: "send"}, function(response) {
+		chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
+  			chrome.tabs.sendMessage(tabs[0].id, {flag: "send",currentURL:tabs[0].url}, function(response) {
     			alert(response.filename+" saved");
     			loadDoc(response.filename,response.code);
   			});
