@@ -4,6 +4,7 @@ let RegEx = {
 	hackerearth:/hackerearth/
 }
 var filename,temp,code;
+alert("script chali!");
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse){
 		if (request.flag == "send"){
@@ -14,16 +15,25 @@ chrome.runtime.onMessage.addListener(
 				for (var i = 0; i < temp.length; i++) {
 					code=code+"\r\n"+temp[i].textContent;
 				}
-				
 			}
 
 			if (request.currentURL.match(RegEx.codechef)){
 				filename = document.getElementsByClassName("ns-heading")[0].getElementsByTagName("a")[0].innerHTML;
 				temp = document.getElementById("frame_edit-program").contentDocument;
 				code = temp.getElementsByClassName("cpp")[0].innerHTML;
-				console.log(code);
 			}
 			
+			if (request.currentURL.match(RegEx.hackerearth)){
+				filename = document.getElementById("problem-title").textContent;
+				filename = filename.replace(/\s+/g,' ').trim();
+				temp = document.getElementsByClassName("ace_line");
+				code = "";
+				for (var i = 0; i < temp.length; i++) {
+					code = code +"\r\n"+temp[i].textContent;
+				}
+				console.log(filename);
+			}
+
 			sendResponse({
 				filename: filename,
 				code:code
